@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { EventService } from './shared/events.service';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { ToastrService } from '../common/toastr.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
         <hr/>
         <div class="row">
             <div *ngFor="let event of events" class="col-md-5">
-                <event-thumbnail [event]="event"></event-thumbnail>
+                <event-thumbnail (click)="handleThumbnailClick(event.name)" [event]="event"></event-thumbnail>
             </div>
         </div>
     </div>
@@ -20,11 +21,15 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 export class EventsListComponent implements OnInit {
     events:any[];
 
-    constructor(private eventService: EventService){
+    constructor(private eventService: EventService, private toastr:ToastrService){
         
     }
 
     ngOnInit() {
         this.events = this.eventService.getEvents();
+    }
+
+    handleThumbnailClick(name){
+        this.toastr.success(name);
     }
 }
