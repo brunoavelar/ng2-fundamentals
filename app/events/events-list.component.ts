@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { EventService } from './shared/events.service';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { OnInit } from '@angular/core';
 import { ToastrService } from '../common/toastr.service';
 import { ActivatedRoute } from '@angular/router';
 import { IEvent } from './index';
